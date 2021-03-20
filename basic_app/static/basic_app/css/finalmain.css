@@ -1,0 +1,35 @@
+
+body{
+		background-color: #ebeff5;
+	}
+
+  h1 {
+  text-align: center;
+}
+
+.nav-link {
+
+  font-size: 25px !important;
+
+
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+	#total-orders{
+		background-color: #4cb4c7;
+	}
+
+
+	#orders-delivered{
+		background-color: #7abecc;
+	}
+
+	#orders-pending{
+		background-color: #7CD1C0;
+	}

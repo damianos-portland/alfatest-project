@@ -1,0 +1,33 @@
+{% extends 'basic_app/newbase.html' %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>New Customer Form</h1>
+
+      {% if registered %}
+        <h1>New Customer Created!!</h1>
+        <a class="btn btn-info" href="{% url 'applications:new_application' %}" role="button">Procceed to new application</a>
+      {% else %}
+        <h1>Register Here</h1>
+
+
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ customer_form.as_p }}
+
+
+
+
+          <!-- {{ profile_form.as_p }} -->
+
+          <input type="submit" name="" value="Create New Customer">
+          <!-- <p>Already registered?</p>
+          <a class="btn btn-info" href="{% url 'basic_app:user_login' %}" role="button">Login</a> -->
+
+        </form>
+        {% endif %}
+
+
+    </div>
+  </div>
+{% endblock %}

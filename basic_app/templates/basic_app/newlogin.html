@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'basic_app/css/mystyle.css' %}"/>
+  </head>
+  <body>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://www.alfatest.gr/images/apple-touch-icon.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form method="post" action="{% url 'basic_app:user_login' %}">
+      {% csrf_token %}
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
+      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="LogIn">
+
+      <p>You have no account? Please Register:</p>
+      <a class="btn btn-info" href="{% url 'basic_app:register' %}" role="button">Register</a>
+    </form>
+
+
+
+  </div>
+</div>
+  </body>
+</html>

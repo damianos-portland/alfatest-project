@@ -1,0 +1,47 @@
+{% extends 'basic_app/newbase.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="jumbotron">
+
+
+
+
+
+{% if registered %}
+  <h1>Application Updated!!</h1>
+  <a class="btn btn-info" href="{% url 'applications:all_applications' %}" role="button">Return to applications</a>
+{% else %}
+
+    <h2>Application update</h2>
+
+
+
+      <div id="form-group">
+
+
+
+
+			<!-- <form id="form_login" action="" method="POST"> -->
+      <form enctype="multipart/form-data" method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+
+					<hr>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+				<!-- <input type="submit" name="Submit" > -->
+			</form>
+      {% endif %}
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

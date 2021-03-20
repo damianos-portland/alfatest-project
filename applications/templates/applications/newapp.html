@@ -1,0 +1,41 @@
+{% extends 'basic_app/newbase.html' %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>New Application Form</h1>
+
+      {% if registered %}
+        <h1>Application Creates!!</h1>
+        <a class="btn btn-info" href="{% url 'index' %}" role="button">Home</a>
+      {% else %}
+        <h1>Register Here</h1>
+
+
+        <form enctype="multipart/form-data" method="POST" id="post-form" data-cities-url="{% url 'applications:load_trials' %}">
+          {% csrf_token %}
+          {{ application_form.as_p}}
+
+
+
+          <p>Customer not existed?</p>
+
+          <a class="btn btn-sm btn-info" href="{% url 'applications:newcustomer' %}">Create a new customer</a>
+          <!-- {{ profile_form.as_p }} -->
+          <br>
+          <br>
+          <input type="submit" name="" value="Register">
+          <!-- <p>Already registered?</p>
+          <a class="btn btn-info" href="{% url 'basic_app:user_login' %}" role="button">Login</a> -->
+
+        </form>
+
+
+
+        {% endif %}
+
+
+    </div>
+  </div>
+
+
+{% endblock %}

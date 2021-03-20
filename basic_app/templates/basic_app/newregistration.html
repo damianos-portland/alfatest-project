@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'basic_app/css/myreg.css' %}"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+
+        <div class="fadeIn first">
+          <img src="https://www.alfatest.gr/images/apple-touch-icon.png" id="icon" alt="User Icon" />
+        </div>
+      {% if registered %}
+        <h1>Thank you for registering!</h1>
+        <a class="btn btn-info" href="{% url 'basic_app:user_login' %}" role="button">Login</a>
+      {% else %}
+        <h1>Register Here</h1>
+
+
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          <!-- {{ profile_form.as_p }} -->
+
+          <input type="submit" name="" value="Register">
+          <p>Already registered?</p>
+          <a class="btn btn-info" href="{% url 'basic_app:user_login' %}" role="button">Login</a>
+
+        </form>
+        {% endif %}
+
+      </div>
+    </div>
+
+
+  </body>
+</html>

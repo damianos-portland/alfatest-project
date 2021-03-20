@@ -1,0 +1,62 @@
+{% extends 'basic_app/finalbase.html' %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+
+      <h1>Weclome to ALFATEST application administration</h1>
+    <img src="https://www.alfatest.gr/images/apple-touch-icon.png"  width="250" height="250" class="center"/>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+  {%  include 'basic_app/status.html' %}
+
+  <div class="col-md-7">
+		<h5>LAST 5 ORDERS</h5>
+		<hr>
+		<div class="card card-body">
+
+			<table class="table table-sm">
+				<tr>
+
+    	    <th>Name</th>
+
+    	    <th>Date</th>
+
+          <th>Status</th>
+
+          <th>Update</th>
+				</tr>
+
+				{% for app in pages  %}
+					<tr>
+
+      	    <td>{{app.name}}</td>
+
+      	    <td>{{app.date}}</td>
+
+            <td>{{app.status}}</td>
+
+            <td><a class="btn btn-sm btn-info" href="{% url 'applications:updateOrder' app.id %}">Update</a></td>
+
+
+
+
+					</tr>
+				{% endfor %}
+
+
+			</table>
+		</div>
+	</div>
+
+{% endblock %}

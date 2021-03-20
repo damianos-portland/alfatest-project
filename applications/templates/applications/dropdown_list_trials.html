@@ -1,0 +1,5 @@
+<ul>
+{% for trial in trials %}
+<li><input type="checkbox" value="{{ trial.pk }}" >{{ trial.name }}</li>
+{% endfor %}
+</ul>

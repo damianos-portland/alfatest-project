@@ -1,0 +1,100 @@
+{% extends 'basic_app/newbase.html' %}
+{% block body_block %}
+
+  <h1>Here is the filtering of all applications!</h1>
+
+  <div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+
+	</div>
+
+    {% if has_filter %}
+    <div class="col">
+    <!-- <a href="{%  url 'applications:all_applications' %}">Clear all filters</a> -->
+    <form action="{%  url 'applications:all_applications' %}">
+    <button type="submit" class="btn btn-warning">Clear Filters</button>
+  </form>
+    </div>
+    {% endif %}
+
+
+
+</div>
+
+  <div class="row">
+	<div class="col-md">
+	<div class="card card-body">
+	<table class="table table-sm">
+	<tr>
+	    <th>Protocol_number</th>
+	    <th>Name</th>
+	    <th>Address</th>
+	    <th>Date</th>
+      <!-- <th>Tests</th> -->
+      <th>Status</th>
+      <th>Yliko</th>
+      <th>Dokimes</th>
+      <!-- <th>List_status</th> -->
+
+	    <!-- <th>Status</th> -->
+	</tr>
+	{% for application  in page_obj %}
+	<tr>
+
+
+	    <td>{{application.protocol_number}}</td>
+	    <td>{{application.customer.name}}</td>
+	    <td>{{application.customer.address}}</td>
+	    <td>{{application.date}}</td>
+      <!-- <td>{{application.tests}}</td> -->
+      <td>{{application.status}}</td>
+      <td>{{application.ergo.eidos}}</td>
+      <td>
+      {% for trial in application.trials.all %}
+      {{trial.name}},
+      {% endfor %}</td>
+      <!-- <td>{{application.status_list}}</td> -->
+
+
+      <td><a class="btn btn-sm btn-info" href="{% url 'applications:updateOrder' application.id %}">Update</a></td>
+      <td><a class="btn btn-sm btn-success" href="{% url 'applications:createXL' application.id %}">Export Excel</a></td>
+
+	    <!-- <td>{{order.status}}</td> -->
+	</tr>
+	{% endfor %}
+	</table>
+	</div>
+	</div>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+{% endblock %}

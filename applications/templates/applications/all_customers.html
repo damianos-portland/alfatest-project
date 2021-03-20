@@ -1,0 +1,97 @@
+{% extends 'basic_app/newbase.html' %}
+{% block body_block %}
+
+  <h1>Here is the filtering of all customers!</h1>
+
+  <div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{mycustFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+
+	</div>
+
+    {% if has_filter %}
+    <div class="col">
+    <!-- <a href="{%  url 'applications:all_applications' %}">Clear all filters</a> -->
+    <form action="{%  url 'applications:all_customers' %}">
+    <button type="submit" class="btn btn-warning">Clear Filters</button>
+  </form>
+    </div>
+    {% endif %}
+
+
+
+</div>
+
+  <div class="row">
+	<div class="col-md">
+	<div class="card card-body">
+	<table class="table table-sm">
+	<tr>
+	    <th>Afm</th>
+	    <th>Name</th>
+	    <th>Address</th>
+	    <th>Phone</th>
+      <!-- <th>Tests</th> -->
+      <th>Email</th>
+      <th>Engineer</th>
+      <!-- <th>Dokimes</th> -->
+      <!-- <th>List_status</th> -->
+
+	    <!-- <th>Status</th> -->
+	</tr>
+	{% for customer  in page_obj %}
+	<tr>
+
+
+	    <td>{{customer.afm}}</td>
+	    <td>{{customer.name}}</td>
+	    <td>{{customer.address}}</td>
+	    <td>{{customer.phone}}</td>
+      <!-- <td>{{application.tests}}</td> -->
+      <td>{{customer.email}}</td>
+      <td>{{customer.engineer}}</td>
+      <!-- <td>{{application.ergo.dokimi}}</td> -->
+      <!-- <td>{{application.status_list}}</td> -->
+
+      <td><a class="btn btn-sm btn-info" href="{% url 'applications:updateCustomer' customer.id %}">Update</a></td>
+
+
+
+	    <!-- <td>{{order.status}}</td> -->
+	</tr>
+	{% endfor %}
+	</table>
+	</div>
+	</div>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+{% endblock %}
